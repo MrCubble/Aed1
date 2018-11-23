@@ -42,24 +42,5 @@ int listaSimetrica(tipoLista* l1){
 }
 
 int main(){
-	tipoNo a, b, c, d, e, f;
-    a.dado = 3;
-    b.dado = 6;
-    c.dado = 9;
-    d.dado = 3;
-    e.dado = 6;
-    f.dado = 9;
-    a.prox = &b;
-    b.prox = &c;
-    c.prox = &d;
-    d.prox = &e;
-    e.prox = &f;
-    f.prox = NULL;
-    tipoLista x;
-    x.prim = &a;
-    if(listaSimetrica(&x) == 1)
-        printf("Eu acho que funciona!\n");
-    else
-        printf("Rapaz, isso nao funciona\n"); 
     return 0;
 }
