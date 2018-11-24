@@ -25,25 +25,24 @@ void qSortInterno2(tipoDado v[], int ini, int fim){
     if(fim - ini <= 10)
         insectionSort(v, ini, fim);
     else{
-        qSortInterno2(v, ini, (ini+fim)/2);
-        qSortInterno2(v, (ini+fim)/2+1, fim);
-        tipoDado u[fim - ini + 2];
-        int i = ini, j = (ini+fim)/2+1;
-        int k = 0;
-        while(i<=(ini+fim)/2 || j<=fim){
-            if((strcmp(v[i].nome, v[j].nome)<0 && i<=(ini+fim)/2)||j>fim){
-                u[k] = v[i];
-                i++;
+        int i, j;
+        tipoDado pivot, tmp;
+        i = ini;
+        j = fim;
+        pivot = v[(i+j)/2];
+        do{
+            while(strcmp(v[i].nome, pivot.nome)<0) i++;
+            while(strcmp(v[j].nome, pivot.nome)>0) j--;
+            if(i<=j){
+                tmp = v[j];
+                v[j] = v[i];
+                v[i] = tmp;
+                i++; j--;
             }
-            else{
-                u[k] = v[j];
-                j++;
-            }
-            k++;
-        }
-        for(int i=ini; i<=fim; i++)
-            v[i] = u[i-ini];
-    }
+        }while(i<=j);
+        qSortInterno2(v, ini, j);
+        qSortInterno2(v, i, fim);
+   }
 }
 void quickSort(int n, tipoDado v[]){
     qSortInterno2(v, 0, n-1);
