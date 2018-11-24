@@ -20,28 +20,6 @@ void insectionSort(tipoDado v[], int ini, int fim){
     }
 }
 
-void qSortInterno(int v[], int ini, int fim){
-    int i, j;
-    int pivot, tmp;
-    if(fim - ini > 0){
-        i = ini;
-        j = fim;
-        pivot = v[(i+j)/2];
-        do{
-            while(v[i] < pivot) i++;
-            while(v[j] > pivot) j--;
-            if(i<=j){
-                tmp = v[i];
-                v[i] = v[j];
-                v[j] = tmp;
-                i++; j--;
-            }
-        }while(i<=j);
-        qSortInterno(v, ini, j);
-        qSortInterno(v, i, fim);
-    }
-}
-
 void qSortInterno2(tipoDado v[], int ini, int fim){
     if(fim - ini <= 10)
         insectionSort(v, ini, fim);
