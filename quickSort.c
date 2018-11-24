@@ -26,16 +26,23 @@ void qSortInterno2(tipoDado v[], int ini, int fim){
         insectionSort(v, ini, fim);
     else{
         qSortInterno2(v, ini, (ini+fim)/2);
-        qSortInterno2(v, (ini+fim)/2 + 1, fim);
-        tipoDado tmp;
-        int x = ini, y = (ini+fim)/2+1;
-        for(int i=ini; i<=fim; i++){
-            if(strcmp(v[x].nome, v[y].nome)>0){
-                tmp = v[x];
-                v[x] = v[y];
-                v[y] = tmp;
+        qSortInterno2(v, (ini+fim)/2+1, fim);
+        tipoDado u[fim - ini + 2];
+        int i = ini, j = (ini+fim)/2+1;
+        int k = 0;
+        while(i<=(ini+fim)/2 || j<=fim){
+            if((strcmp(v[i].nome, v[j].nome)<0 && i<=(ini+fim)/2)||j>fim){
+                u[k] = v[i];
+                i++;
             }
+            else{
+                u[k] = v[j];
+                j++;
+            }
+            k++;
         }
+        for(int i=ini; i<=fim; i++)
+            v[i] = u[i-ini];
     }
 }
 void quickSort(int n, tipoDado v[]){
